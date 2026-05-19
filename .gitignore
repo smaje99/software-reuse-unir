@@ -1,0 +1,17 @@
+target/
+bin/
+obj/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.DS_Store
+docs/*.aux
+docs/*.bbl
+docs/*.blg
+docs/*.log
+docs/*.out
+docs/*.toc
+docs/*.fdb_latexmk
+docs/*.fls
+docs/*.synctex.gz
