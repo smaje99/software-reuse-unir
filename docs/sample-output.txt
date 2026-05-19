@@ -1,0 +1,8 @@
+Procesando informe 'ENT_FAC_001.txt' de ENTRADA y tipo FACTURA. Accion simulada: registro de factura recibida en el modulo de compras.
+Procesando informe 'ENT_COM_002.txt' de ENTRADA y tipo COMPRA. Accion simulada: validacion de compra entrante para conciliacion interna.
+Procesando informe 'SAL_FAC_003.txt' de SALIDA y tipo FACTURA. Accion simulada: emision de factura de salida hacia el sistema contable.
+Procesando informe 'SAL_COM_004.txt' de SALIDA y tipo COMPRA. Accion simulada: cierre de compra de salida para auditoria de movimientos.
+Procesando informe 'MIX_FAC_005.txt' de MIXTA y tipo FACTURA. Accion simulada: orquestacion hibrida de una factura compartida entre entrada y salida.
+Procesando informe 'MIX_COM_006.txt' de MIXTA y tipo COMPRA. Accion simulada: sincronizacion de compra mixta entre inventario y expedicion.
+Procesando informe 'ENT_PED_007.txt' de ENTRADA y tipo PEDIDO. Accion simulada: alta de pedido de entrada para planificacion logistica.
+Error procesando 'SAL_PED_008.txt': The category SALIDA does not support reports of type PEDIDO.

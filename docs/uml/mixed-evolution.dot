@@ -1,0 +1,22 @@
+digraph mixed {
+    graph [rankdir=LR, splines=ortho, nodesep=0.45, ranksep=0.75];
+    node [shape=record, fontname="Helvetica", fontsize=10];
+    edge [arrowhead=vee, fontname="Helvetica", fontsize=9];
+
+    provider [label="{ReportFactoryProvider|+ getFactory(category)}"];
+    abstractFactory [label="{interface CategoryReportFactory|+ supportedCategory()\l+ createProcessor(type, fileName)\l}"];
+    entryFactory [label="{EntryReportFactory|ENTRY family}"];
+    outputFactory [label="{OutputReportFactory|OUTPUT family}"];
+    mixedFactory [label="{MixedReportFactory|MIXED family}"];
+    processor [label="{interface ReportProcessor|+ process(): String}"];
+    mixedInvoice [label="{MixedInvoiceReportProcessor|MIXED + INVOICE}"];
+    mixedPurchase [label="{MixedPurchaseReportProcessor|MIXED + PURCHASE}"];
+
+    provider -> abstractFactory [label="returns"];
+    entryFactory -> abstractFactory [arrowhead=empty];
+    outputFactory -> abstractFactory [arrowhead=empty];
+    mixedFactory -> abstractFactory [arrowhead=empty];
+    mixedInvoice -> processor [arrowhead=empty];
+    mixedPurchase -> processor [arrowhead=empty];
+    abstractFactory -> processor [label="creates"];
+}

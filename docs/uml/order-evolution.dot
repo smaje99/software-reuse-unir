@@ -1,0 +1,20 @@
+digraph order {
+    graph [rankdir=LR, splines=ortho, nodesep=0.45, ranksep=0.75];
+    node [shape=record, fontname="Helvetica", fontsize=10];
+    edge [arrowhead=vee, fontname="Helvetica", fontsize=9];
+
+    abstractFactory [label="{interface CategoryReportFactory|+ supportedCategory()\l+ createProcessor(type, fileName)\l}"];
+    entryFactory [label="{EntryReportFactory|registers INVOICE\lregisters PURCHASE\lregisters ORDER\l}"];
+    outputFactory [label="{OutputReportFactory|registers INVOICE\lregisters PURCHASE\l}"];
+    mixedFactory [label="{MixedReportFactory|registers INVOICE\lregisters PURCHASE\l}"];
+    processor [label="{interface ReportProcessor|+ process(): String}"];
+    entryOrder [label="{EntryOrderReportProcessor|ENTRY + ORDER}"];
+    note [shape=note, label="The abstract interface stays stable.\nOnly the ENTRY family grows."];
+
+    entryFactory -> abstractFactory [arrowhead=empty];
+    outputFactory -> abstractFactory [arrowhead=empty];
+    mixedFactory -> abstractFactory [arrowhead=empty];
+    entryOrder -> processor [arrowhead=empty];
+    abstractFactory -> processor [label="creates"];
+    note -> entryFactory [style=dashed, arrowhead=none];
+}

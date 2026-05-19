@@ -1,0 +1,30 @@
+digraph base {
+    graph [rankdir=LR, splines=ortho, nodesep=0.45, ranksep=0.75];
+    node [shape=record, fontname="Helvetica", fontsize=10];
+    edge [arrowhead=vee, fontname="Helvetica", fontsize=9];
+
+    service [label="{ReportProcessingService|+ processReports(reports)}"];
+    parser [label="{ReportParser|+ parse(fileName): ReportMetadata}"];
+    provider [label="{ReportFactoryProvider|+ getFactory(category)}"];
+    metadata [label="{ReportMetadata|category\ltype\lfileName\l}"];
+    abstractFactory [label="{interface CategoryReportFactory|+ supportedCategory()\l+ createProcessor(type, fileName)\l}"];
+    entryFactory [label="{EntryReportFactory|creates ENTRY processors}"];
+    outputFactory [label="{OutputReportFactory|creates OUTPUT processors}"];
+    processor [label="{interface ReportProcessor|+ process(): String}"];
+    entryInvoice [label="{EntryInvoiceReportProcessor|ENTRY + INVOICE}"];
+    entryPurchase [label="{EntryPurchaseReportProcessor|ENTRY + PURCHASE}"];
+    outputInvoice [label="{OutputInvoiceReportProcessor|OUTPUT + INVOICE}"];
+    outputPurchase [label="{OutputPurchaseReportProcessor|OUTPUT + PURCHASE}"];
+
+    service -> parser [label="uses"];
+    service -> provider [label="uses"];
+    parser -> metadata [label="creates"];
+    provider -> abstractFactory [label="returns"];
+    abstractFactory -> processor [label="creates"];
+    entryFactory -> abstractFactory [arrowhead=empty];
+    outputFactory -> abstractFactory [arrowhead=empty];
+    entryInvoice -> processor [arrowhead=empty];
+    entryPurchase -> processor [arrowhead=empty];
+    outputInvoice -> processor [arrowhead=empty];
+    outputPurchase -> processor [arrowhead=empty];
+}
